@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+   <script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="../admin/css/font.css">
+    <link rel="stylesheet" href="../admin/css/xadmin.css">
+    <script type="text/javascript" src="../admin/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../admin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="../admin/js/xadmin.js"></script>
+     <script src="../admin/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../admin/js/bootstrap.min.js"></script>
+	<title>松兰堡楼宇管理系统</title>
+    <script type="text/javascript">
+        function login() {
+            var adminname = $("#adminname").val();
+            var password = $("#password").val();
+            if (adminname == "") {
+                alert("用户名不能为空");
+                return false;
+            }
+            if (password == "") {
+                alert("密码不能为空");
+                return false;
+            }
+            $.ajax({
+                type: "POST",
+                url: "../admin/submitadminlogin.do",
+                data: {
+                	adminname:adminname,
+                	password:password
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data == "") {
+                        alert("欢迎您，登陆成功！");
+                        window.location.href = "../admin/index.jsp";
+                    } else {
+                    	alert(data);
+                        $("#password").val("");
+                    }
+
+                },
+                error: function (data) {
+                    alert(data.responseText);
+                }
+            });
+
+        }
+    </script>
+</head>
+<body class="login-bg">
+    
+    <div class="login">
+        <div class="message">松兰堡楼宇管理登录</div>
+        <div id="darkbannerwrap"></div>
+        
+        <div  class="layui-form" >
+            <input id="adminname"name="adminname" placeholder="用户名"  type="text"  class="layui-input" >
+            <hr class="hr15">
+            <input id="password"name="password"  placeholder="密码"  type="password"  class="layui-input">
+            <hr class="hr15">
+            <input value="登录"  style="width:100%;"   type="submit" onclick="login()">
+            <hr class="hr20" >
+        </div>
+    </div>
+</body>
+</html>
