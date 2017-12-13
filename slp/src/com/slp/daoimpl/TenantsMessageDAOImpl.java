@@ -9,7 +9,7 @@ import com.slp.entity.SqlCommandEntity;
 import com.slp.entity.TenantsMessageEntity;
 import com.slp.toolutil.ToolUtil;
 import com.slp.dao.TenantsMessageDAO;
-
+import com.slp.entity.HousingMessageEntity;
 import com.slp.entity.ReturnResultEntity;
 import com.slp.entity.SearchBaseEntity;
 
@@ -145,6 +145,17 @@ public class TenantsMessageDAOImpl implements TenantsMessageDAO {
 		}
 		int count = db.GetInt(new SqlCommandEntity(sql));
 		return count;
+	}
+	@Override
+	public List<TenantsMessageEntity> getlisttenantsmessageuserid(SearchBaseEntity sbitem) {
+		String sql = "SELECT * from tenantsmessage where status=0";
+		
+		if (!ToolUtil.IsEmptyOrNull(sbitem.getWhere())) {
+			sql += " and " + sbitem.getWhere();
+		}
+		List<TenantsMessageEntity> result = db.Query(new SqlCommandEntity(sql),
+				TenantsMessageEntity.class);
+		return result;
 	}
 	
 }

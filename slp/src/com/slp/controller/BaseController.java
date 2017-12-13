@@ -69,6 +69,8 @@ public class BaseController {
 		public com.slp.service.CarPositionService carpositionService;
 		@Autowired
 		public com.slp.service.CarPositionMessageService carpositionmessageService;
+		@Autowired
+		public com.slp.service.RegisterService registerService;
 	// [end]
 
 	// [start]公有函数

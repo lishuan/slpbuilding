@@ -1,6 +1,7 @@
 package com.slp.service;
 import java.util.List;
 
+import com.slp.entity.HousingMessageEntity;
 import com.slp.entity.ReturnResultEntity;
 import com.slp.entity.SearchBaseEntity;
 import com.slp.entity.TenantsMessageEntity;
@@ -21,6 +22,8 @@ public interface TenantsMessageService {
 	public List<TenantsMessageEntity> getListTenantsMessage(SearchBaseEntity sbitem);
 	
 	public int getListTenantsMessageRecordCount(SearchBaseEntity sbitem);
+
+	public List<TenantsMessageEntity> getlisttenantsmessageuserid(SearchBaseEntity sbitem);
 
 			// [end]
 

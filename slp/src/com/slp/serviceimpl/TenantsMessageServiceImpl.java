@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.slp.dao.TenantsMessageDAO;
+import com.slp.entity.HousingMessageEntity;
 import com.slp.entity.ReturnResultEntity;
 import com.slp.entity.SearchBaseEntity;
 import com.slp.entity.TenantsMessageEntity;
@@ -59,6 +60,12 @@ public class TenantsMessageServiceImpl implements TenantsMessageService {
 	public int getListTenantsMessageRecordCount(SearchBaseEntity sbitem) {
 		// TODO Auto-generated method stub
 		return dao.getListTenantsMessageRecordCount(sbitem);
+	}
+
+	@Override
+	public List<TenantsMessageEntity> getlisttenantsmessageuserid(SearchBaseEntity sbitem) {
+		// TODO Auto-generated method stub
+		return dao.getlisttenantsmessageuserid(sbitem);
 	}
 	
 

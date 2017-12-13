@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.slp.entity.SearchBaseEntity;
 import com.slp.entity.TenantsMessageEntity;
+import com.slp.entity.HousingMessageEntity;
 import com.slp.entity.ReturnResultEntity;
 
 public interface TenantsMessageDAO {
@@ -20,6 +21,8 @@ public interface TenantsMessageDAO {
 		public List<TenantsMessageEntity> getListTenantsMessage(SearchBaseEntity sbitem);
 		
 		public int getListTenantsMessageRecordCount(SearchBaseEntity sbitem);
+
+		public List<TenantsMessageEntity> getlisttenantsmessageuserid(SearchBaseEntity sbitem);
 
 
 		// [end]

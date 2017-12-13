@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.slp.entity.UserEntity;
+import com.slp.entity.HousingMessageEntity;
 import com.slp.entity.ReturnResultEntity;
 import com.slp.entity.SearchBaseEntity;
 import com.slp.entity.TenantsMessageEntity;
@@ -163,5 +164,29 @@ public class TenantsMessageController extends BaseController {
 			UserEntity item = userService.getOneUserModel(id);
 			request.setAttribute("item", item);
 			return new ModelAndView("/user/member-edit");
+		}
+		
+		//房间下拉框change事件
+		@RequestMapping(value = "getlisttenantsmessageuserid")
+		public @ResponseBody String  housinghometypesmodel(HttpServletRequest request) {
+			SearchBaseEntity sbitem = new SearchBaseEntity();
+			String unit = request.getParameter("unit");
+			String floors=request.getParameter("floors");
+			String homecode=request.getParameter("homecode");
+			String where = "0=0";
+			if (!ToolUtil.IsEmptyOrNull(unit)) {
+				where += String.format(" and unit="+unit+"",unit);
+			}
+			if (!ToolUtil.IsEmptyOrNull(floors)) {
+				where += String.format(" and floors="+floors+"",
+						floors);
+			}
+			if (!ToolUtil.IsEmptyOrNull(homecode)) {
+				where += String.format(" and homecode="+homecode+"",
+						floors);
+			}
+			sbitem.setWhere(where);
+			List<TenantsMessageEntity> result = tenantsmessageService.getlisttenantsmessageuserid(sbitem);
+			return gs.toJson(result);
 		}
 }

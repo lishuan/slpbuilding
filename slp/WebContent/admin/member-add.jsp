@@ -56,8 +56,9 @@
               <label for="L_repass" class="layui-form-label">
               </label>
               <button  class="layui-btn" lay-filter="add" lay-submit="">
-                  增加
+                  	增加
               </button>
+              <a  class="layui-btn" onclick="x_admin_close()">取消</a>
           </div>
           </form>
       </div>
