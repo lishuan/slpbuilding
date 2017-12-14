@@ -26,6 +26,8 @@ public interface CarPositionDAO {
 
 		public List<CarPositionEntity> getListcarpositioncode1(SearchBaseEntity sbitem);
 
+		public List<CarPositionEntity> getmaxcarpositioncode(SearchBaseEntity sbitem);
+
 
 		// [end]
 }

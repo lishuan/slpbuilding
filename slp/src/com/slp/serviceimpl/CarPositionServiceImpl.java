@@ -74,6 +74,12 @@ public class CarPositionServiceImpl implements CarPositionService {
 		return dao.getListcarpositioncode1(sbitem);
 	}
 
+	@Override
+	public List<CarPositionEntity> getmaxcarpositioncode(SearchBaseEntity sbitem) {
+		// TODO Auto-generated method stub
+		return dao.getmaxcarpositioncode(sbitem);
+	}
+
 	
 
 }

@@ -133,6 +133,20 @@ public class CarPositionController extends BaseController {
 			}
 			return gs.toJson(result);
 		}
+		//根据单元提取max车位号
+		@RequestMapping(value = "getmaxcarpositioncode")
+		public @ResponseBody String  maxcarpositioncodemodel(HttpServletRequest request) {
+			SearchBaseEntity sbitem = new SearchBaseEntity();
+			List<CarPositionEntity> result;
+			String unit = request.getParameter("unit");
+			if (ToolUtil.IsEmptyOrNull(unit)) {
+				sbitem.setWhere("unit=''");
+			} else {
+				sbitem.setWhere("unit='" + unit + "'");
+			}
+			result = carpositionService.getmaxcarpositioncode(sbitem);
+			return gs.toJson(result);
+		}
 		/*//分配住房 取用户数据
 		@RequestMapping(value = "getusername")
 		public ModelAndView editUser(HttpServletRequest request) {

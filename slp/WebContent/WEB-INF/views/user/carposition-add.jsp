@@ -14,7 +14,7 @@
               <label class="layui-form-label">
                   <span class="x-red">*</span>所属单元
               </label>
-              <div class="layui-input-inline" >
+              <div class="layui-input-inline" id="maxcarpositioncode" >
                  <select name="contrller" id="unit" lay-filter="unit" lay-verify="required">
                  <option value="">请选择所属单元</option>
 	              	<c:forEach var="item" items="${unitlist}">
@@ -46,13 +46,12 @@
           var form = layui.form,layer = layui.layer;
           //监听下拉框变化
           form.on('select(unit)',function(data){
-             	    $.post("../housing/getlisthousingfloors.do",{unit: data.value},function(data){
+             	    $.post("../carposition/getmaxcarpositioncode.do",{unit: data.value},function(data){
              	    	
              	    	if (data.length > 0) {
              	    		
              	    		$.each(JSON.parse(data),function(i,v){
-             	    			$("#floors").append("<option value='" + v.floors + "'>" + v.floors +"楼"+ "</option>");
-             	    			form.render('select');
+             	    			$("#maxcarpositioncode").append("<input id=\"sumcode\" style=\"display:none\" value='" + v.maxcarpositioncode + "'></option>");
              	    		})
              	    	}
              	    })
@@ -62,19 +61,22 @@
           form.on('submit(add)', function(data){
             $.post('../carposition/submitcarposition.do',{
             	unit:$("#unit").val(),
+            	maxcarpositioncode:$("#sumcode").val(),
             	carpositionsum:$("#carpositionsum").val()
             },function(data){
                 //res就是返回的结果
                 if (data == "") {
-	                        /* // 获得frame索引
-	                        var index = parent.layer.getFrameIndex(window.name);
-	                        //关闭当前frame
-	                        parent.layer.close(index); */
-	            			 layer.confirm('增加成功', {icon: 6, title:'点击确定继续添加'}, function(index){
+                	layer.alert("增加成功", {icon: 6},function () {
+                        // 获得frame索引
+                        var index = parent.layer.getFrameIndex(window.name);
+                        //关闭当前frame
+                        parent.layer.close(index);
+                    });
+	            			/*  layer.confirm('增加成功', {icon: 6, title:'点击确定继续添加'}, function(index){
 	            				  //do something
 	            				   $("#carpositionsum").val("");
 	            				   layer.close(index);
-	            			});
+	            			}); */
 	            			
 	                }
 	                else {

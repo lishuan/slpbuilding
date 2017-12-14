@@ -29,6 +29,13 @@ public class CarPositionEntity {
 	private int carpositionsum=0;//车位数量
 	private int carpositionstatus=0;//车位状态 0:空闲1：被租用
 	private int carpositioncode;//车位代码
+	private int maxcarpositioncode=0;//最大车位号
+	public int getMaxcarpositioncode() {
+		return maxcarpositioncode;
+	}
+	public void setMaxcarpositioncode(int maxcarpositioncode) {
+		this.maxcarpositioncode = maxcarpositioncode;
+	}
 	public int getCarpositionstatus() {
 		return carpositionstatus;
 	}

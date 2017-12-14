@@ -48,7 +48,12 @@ public class CarPositionDAOImpl implements CarPositionDAO {
 				}
 				v.add(item.getId());
 				v.add(item.getCarpositionstatus());
-				v.add(i);//从1开始为车位编号
+				if(item.getMaxcarpositioncode()>0){
+					v.add(item.getMaxcarpositioncode()+i);//从最大车位号+i开始为车位编号
+				}else{
+					v.add(i);//从1开始为车位编号
+				}
+				
 				v.add(item.getUnit());
 				v.add(item.getAddtime());
 				v.add(item.getStatus());
@@ -149,6 +154,18 @@ public class CarPositionDAOImpl implements CarPositionDAO {
 	@Override
 	public List<CarPositionEntity> getListcarpositioncode1(SearchBaseEntity sbitem) {
 		String sql = "select * from carposition where status=0 and carpositionstatus=1";
+		if (!ToolUtil.IsEmptyOrNull(sbitem.getWhere())) {
+			sql += " and " + sbitem.getWhere();
+		}
+		List<CarPositionEntity> result = db.Query(new SqlCommandEntity(sql),
+				CarPositionEntity.class);
+		return result;
+	}
+
+	@Override
+	public List<CarPositionEntity> getmaxcarpositioncode(SearchBaseEntity sbitem) {
+		
+		String  sql = "SELECT MAX(carpositioncode) AS maxcarpositioncode FROM carposition WHERE status=0";
 		if (!ToolUtil.IsEmptyOrNull(sbitem.getWhere())) {
 			sql += " and " + sbitem.getWhere();
 		}

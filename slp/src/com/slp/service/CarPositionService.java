@@ -26,6 +26,8 @@ public interface CarPositionService {
 
 		public List<CarPositionEntity> getListcarpositioncode1(SearchBaseEntity sbitem);
 
+		public List<CarPositionEntity> getmaxcarpositioncode(SearchBaseEntity sbitem);
+
 
 		// [end]
 }
